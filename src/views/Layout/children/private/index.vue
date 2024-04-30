@@ -5,7 +5,15 @@
       <div class="user-info">
         <div class="base-info">
           <div class="title">基本信息</div>
-          <div class="avatar">头像</div>
+          <div class="avatar">
+            <div class="mask">
+              <span class="iconfont icon-bianji edit"></span>
+            </div>
+            <img
+              src="https://ts4.cn.mm.bing.net/th?id=OIP-C.j1QJ73AX7jMZhltZ35RLLAHaG-&w=257&h=242&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+              alt=""
+            />
+          </div>
           <div class="username">
             <span>用户名: </span>
             <span class="name">
@@ -65,11 +73,38 @@
       color: #8e45b29f;
     }
     .avatar {
-      margin-top: 30px;
+      position: relative;
+      margin-top: 35px;
+      cursor: pointer;
       height: 180px;
       width: 180px;
       border: 1px solid #ccc;
+      overflow: hidden;
       border-radius: 10px;
+      .mask {
+        display: flex;
+        opacity: 0;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.447);
+        border-radius: 5px;
+        transition: all 0.4s linear;
+        .iconfont {
+          color: white;
+          font-weight: 600;
+          font-size: 28px;
+        }
+      }
+      &:hover .mask {
+        opacity: 1;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
     .username {
       margin-top: 40px;
