@@ -1,7 +1,8 @@
 <script setup>
 import { Search } from '@element-plus/icons-vue'
 import { isShallow, ref } from 'vue'
-import ArticleTable from './components/ArticleTable.vue'
+import ArticleTable from './components/ArtCheckTable.vue'
+import ArtPunishTable from './components/ArtPunishTable.vue'
 const aticleState = ref('articleCheck')
 
 const handToggle = (value) => {
@@ -18,19 +19,19 @@ const tableCheckData = [
     address: 'Angeles'
   },
   {
-    nickname: 'Tom',
+    nickname: 'June',
     title: 'tomorrow will bettertomorrow will bettertomorrow will bettertomorrow will better',
     date: '2016-05-03',
     address: 'Angeles'
   },
   {
-    nickname: 'Tom',
+    nickname: 'Jack',
     title: 'tomorrow will bettertomorrow will bettertomorrow will bettertomorrow will better',
     date: '2016-05-03',
     address: 'Angeles'
   },
   {
-    nickname: 'Tom',
+    nickname: 'Adm',
     title: 'tomorrow will bettertomorrow will bettertomorrow will bettertomorrow will better',
     date: '2016-05-03',
     address: 'Angeles'
@@ -42,7 +43,7 @@ const punishTableData = ref([
     nickname: 'bad',
     title: 'tomorrow will bettertomorrow will bettertomorrow will bettertomorrow will better',
     date: '2016-05-03',
-    address: 'Angeles'
+    address: 'Americal'
   },
   {
     nickname: 'bad',
@@ -64,6 +65,22 @@ const punishTableData = ref([
   }
 ])
 const pageSize3 = ref(4)
+
+const centerDialogVisible = ref(false) //控制对话框的显示和隐藏
+
+//处理查看文章
+const handSeek = (obj) => {
+  centerDialogVisible.value = true //开启弹窗
+  // console.log(obj)
+}
+//处理通过文章审核
+const handSucsCheck = (obj) => {
+  // console.log(obj)
+}
+//处理文章审核失败
+const handFailCheck = (obj) => {
+  // console.log(obj)
+}
 </script>
 <template>
   <div>
@@ -87,15 +104,12 @@ const pageSize3 = ref(4)
       </div>
       <transition name="fade" mode="out-in">
         <!-- 审核文章 -->
-        <ArticleTable :tableData="tableCheckData" v-if="aticleState === 'articleCheck'">
-          <el-button type="success" @click="handleClick" plain>通过审核</el-button>
-          <el-button type="danger" plain>未通过</el-button>
-        </ArticleTable>
+        <ArticleTable
+          :tableData="tableCheckData"
+          v-if="aticleState === 'articleCheck'"
+        ></ArticleTable>
         <!-- 违规文章 -->
-        <ArticleTable :tableData="punishTableData" v-else>
-          <el-button type="primary" @click="handleClick" plain>撤回</el-button>
-          <el-button type="danger" plain>下架</el-button>
-        </ArticleTable>
+        <ArtPunishTable :tableData="punishTableData" v-else> </ArtPunishTable>
       </transition>
       <div class="page-box">
         <el-pagination

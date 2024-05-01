@@ -4,7 +4,6 @@ import { ref } from 'vue'
 const router = useRouter()
 let routerPath = ref('/layout')
 const handSelect = (path) => {
-  console.log(index)
   routerPath.value = path
 }
 </script>
